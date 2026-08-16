@@ -18,6 +18,11 @@ Desenvolvido para facilitar a criação de READMEs seguindo o formato esperado p
 * TailwindCSS
 * React
 
+## Requisitos
+
+* Git
+* Node.js 22 ou superior
+
 ## Instalação
 
 Clone o repositório:
