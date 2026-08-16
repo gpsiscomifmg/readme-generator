@@ -1,44 +1,74 @@
-# Gerador de README do GPSisCom
+# Gerador de README
 
-Aplicação web estática para criar arquivos `README.md` padronizados para os projetos do Grupo de Pesquisa em Sistemas Computacionais (GPSisCom).
+Aplicação web estática para criar arquivos README.md padronizados para os projetos do Grupo de Pesquisa em Sistemas Computacionais (GPSisCom).
 
-## Executar localmente
+> Projeto desenvolvido no âmbito do **GPSisCom — Grupo de Pesquisa em Sistemas Computacionais**.
 
-Requisitos: Node.js 22 ou superior e npm.
+---
+
+## Sobre o projeto
+
+Desenvolvido para facilitar a criação de READMEs seguindo o formato esperado para projetos hospedados na organização.
+
+## Tecnologias
+
+* TypeScript
+* Node
+* Vite
+* TailwindCSS
+* React
+
+## Instalação
+
+Clone o repositório:
+
+```bash
+git clone git@github.com:gpsiscomifmg/readme-generator.git
+```
+
+Acesse o diretório:
+
+```bash
+cd readme-generator
+```
+
+Instale as dependências:
 
 ```bash
 npm install
+```
+
+## Execução
+
+Inicie o servidor de desenvolvimento:
+
+```bash
 npm run dev
 ```
 
-O Vite exibirá o endereço local no terminal.
-
-## Comandos disponíveis
-
-```bash
-npm run dev      # inicia o servidor de desenvolvimento
-npm run test     # executa os testes unitários
-npm run build    # gera o build de produção em dist/
-npm run preview  # serve o build localmente
-```
-
-## Arquitetura
-
-- `src/types.ts`: contratos do estado do formulário;
-- `src/state.ts`: estado inicial e rascunho em `localStorage`;
-- `src/generator/`: slug, validação e geração pura do Markdown;
-- `src/ui/`: formulário, listas dinâmicas e preview sanitizado;
-- `src/example.ts`: dados do exemplo Scraper - AgroNews;
-- `src/main.ts`: composição da interface e ações de copiar/baixar.
-
-O Markdown renderizado usa `marked` e é sanitizado com `DOMPurify` antes de ser inserido no DOM. Nenhum dado é enviado para um servidor e o avatar dos autores usa apenas os URLs públicos convencionais do GitHub.
-
-## GitHub Pages
-
-O Vite está configurado com a base `/readme-generator/`, correspondente ao Project Page esperado:
+A aplicação estará disponível, por padrão, em:
 
 ```text
-https://gpsiscomifmg.github.io/readme-generator/
+http://127.0.0.1:5173/
 ```
 
-O workflow `.github/workflows/deploy.yml` executa em pushes para `main`, instala as dependências, gera `dist/` e publica o artefato usando as actions oficiais do GitHub Pages.
+---
+
+## Autores
+
+<table>
+<tr>
+  <td align="center">
+    <a href="https://github.com/ianlibanio">
+      <img
+        src="https://github.com/ianlibanio.png"
+        width="100px"
+        alt="Foto de perfil de Ian Libânio"
+      /><br>
+      <sub><b>Ian Libânio</b></sub>
+    </a>
+    <br>
+    <sub>Pesquisador / Desenvolvedor</sub>
+  </td>
+</tr>
+</table>
