@@ -143,6 +143,12 @@ function generateFunctioning(project: ProjectData): string {
 }
 
 export function generateReadme(project: ProjectData): string {
+  const objectives = project.objectives
+    .map(trim)
+    .filter(Boolean)
+    .map((objective) => `* ${objective}`)
+    .join('\n');
+
   const sections = [
     `# ${trim(project.projectName)}`,
     [
@@ -152,15 +158,7 @@ export function generateReadme(project: ProjectData): string {
     ].join('\n'),
     '---',
     ['## Sobre o projeto', '', trim(project.about)].join('\n'),
-    [
-      '## Objetivos',
-      '',
-      project.objectives
-        .map(trim)
-        .filter(Boolean)
-        .map((objective) => `* ${objective}`)
-        .join('\n'),
-    ].join('\n'),
+    ...(objectives ? [['## Objetivos', '', objectives].join('\n')] : []),
     ...(project.includeFunctioning ? [generateFunctioning(project)] : []),
     [
       '## Tecnologias',

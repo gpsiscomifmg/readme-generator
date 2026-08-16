@@ -8,7 +8,7 @@ export function createEmptyProject(): ProjectData {
     repositoryName: '',
     shortDescription: '',
     about: '',
-    objectives: [''],
+    objectives: [],
     includeFunctioning: false,
     functioningIntro: '',
     functioningSteps: [],

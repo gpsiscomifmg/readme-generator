@@ -27,6 +27,11 @@ describe('generateReadme', () => {
     expect(readme).not.toContain('## Funcionamento');
   });
 
+  it('omite Objetivos quando a lista está vazia ou só contém espaços', () => {
+    const readme = generateReadme(makeProject({ objectives: ['  ', ''] }));
+    expect(readme).not.toContain('## Objetivos');
+  });
+
   it('gera blocos bash para instalação e execução', () => {
     const readme = generateReadme(
       makeProject({

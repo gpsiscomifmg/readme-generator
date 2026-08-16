@@ -28,14 +28,6 @@ export function validateProject(project: ProjectData): ValidationError[] {
   }
 
   validateStringList(
-    project.objectives,
-    'objectives',
-    'Adicione pelo menos um objetivo.',
-    'Preencha este objetivo ou remova a linha.',
-    errors,
-  );
-
-  validateStringList(
     project.technologies,
     'technologies',
     'Adicione pelo menos uma tecnologia.',
