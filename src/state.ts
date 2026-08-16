@@ -14,6 +14,7 @@ export function createEmptyProject(): ProjectData {
     functioningSteps: [],
     functioningOutro: '',
     technologies: [''],
+    requirements: [],
     installSteps: [],
     usesEnv: false,
     executionSteps: [{ description: '', command: '' }],
@@ -74,6 +75,7 @@ export function normalizeProject(value: unknown): ProjectData {
     functioningSteps: asStringArray(raw.functioningSteps, []),
     functioningOutro: asString(raw.functioningOutro),
     technologies: technologies.length > 0 ? technologies : empty.technologies,
+    requirements: asStringArray(raw.requirements, []),
     installSteps: asCommandSteps(raw.installSteps),
     usesEnv: raw.usesEnv === true,
     executionSteps:

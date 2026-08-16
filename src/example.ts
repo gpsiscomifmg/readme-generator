@@ -45,6 +45,7 @@ O fluxo principal é:`,
 
 Essa separação permite que a mesma infraestrutura de scraping seja utilizada para diferentes sites, considerando as particularidades configuradas para cada fonte.`,
   technologies: ['Python', 'Django', 'HTML', 'Tailwind CSS', 'JavaScript', 'Requests', 'BeautifulSoup'],
+  requirements: ['Python 3.10 ou superior', 'pip', 'Git'],
   installSteps: [
     { description: 'Crie um ambiente virtual:', command: 'python -m venv .venv' },
     { description: 'Ative o ambiente virtual:', command: 'source .venv/bin/activate' },

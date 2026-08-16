@@ -79,6 +79,7 @@ export function initializeForm(
 
   const objectivesList = elementById('objectives-list');
   const technologiesList = elementById('technologies-list');
+  const requirementsList = elementById('requirements-list');
   const functioningStepsList = elementById('functioning-steps-list');
   const installStepsList = elementById('install-steps-list');
   const executionStepsList = elementById('execution-steps-list');
@@ -110,6 +111,21 @@ export function initializeForm(
       },
       onRemove: (index) => {
         data.technologies.splice(index, 1);
+        renderLists();
+        emit();
+      },
+    });
+
+    renderStringList(requirementsList, data.requirements, {
+      field: 'requirements',
+      label: 'Requisito',
+      placeholder: 'Ex.: Node.js 22 ou superior',
+      onChange: (index, value) => {
+        data.requirements[index] = value;
+        emit();
+      },
+      onRemove: (index) => {
+        data.requirements.splice(index, 1);
         renderLists();
         emit();
       },
@@ -187,6 +203,11 @@ export function initializeForm(
   });
   bindAddButton('add-technology', () => {
     data.technologies.push('');
+    renderLists();
+    emit();
+  });
+  bindAddButton('add-requirement', () => {
+    data.requirements.push('');
     renderLists();
     emit();
   });

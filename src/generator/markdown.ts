@@ -148,6 +148,11 @@ export function generateReadme(project: ProjectData): string {
     .filter(Boolean)
     .map((objective) => `* ${objective}`)
     .join('\n');
+  const requirements = project.requirements
+    .map(trim)
+    .filter(Boolean)
+    .map((requirement) => `* ${requirement}`)
+    .join('\n');
 
   const sections = [
     `# ${trim(project.projectName)}`,
@@ -169,6 +174,7 @@ export function generateReadme(project: ProjectData): string {
         .map((technology) => `* ${technology}`)
         .join('\n'),
     ].join('\n'),
+    ...(requirements ? [['## Requisitos', '', requirements].join('\n')] : []),
     ['## Instalação', '', generateInstallation(project)].join('\n'),
     ['## Execução', '', generateExecution(project)].join('\n'),
     '---',

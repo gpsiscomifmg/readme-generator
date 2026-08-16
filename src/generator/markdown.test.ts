@@ -32,6 +32,19 @@ describe('generateReadme', () => {
     expect(readme).not.toContain('## Objetivos');
   });
 
+  it('gera Requisitos antes de Instalação quando informados', () => {
+    const readme = generateReadme(
+      makeProject({ requirements: ['Node.js 22 ou superior', 'npm'] }),
+    );
+    expect(readme).toContain('## Requisitos\n\n* Node.js 22 ou superior\n* npm');
+    expect(readme.indexOf('## Requisitos')).toBeLessThan(readme.indexOf('## Instalação'));
+  });
+
+  it('omite Requisitos quando a lista está vazia', () => {
+    const readme = generateReadme(makeProject({ requirements: [] }));
+    expect(readme).not.toContain('## Requisitos');
+  });
+
   it('gera blocos bash para instalação e execução', () => {
     const readme = generateReadme(
       makeProject({

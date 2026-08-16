@@ -20,6 +20,7 @@ export interface ProjectData {
   functioningSteps: string[];
   functioningOutro: string;
   technologies: string[];
+  requirements: string[];
   installSteps: CommandStep[];
   usesEnv: boolean;
   executionSteps: CommandStep[];
