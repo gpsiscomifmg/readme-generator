@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Gere READMEs padronizados para os projetos do GPSisCom."
+    />
+    <title>Gerador de README | GPSisCom</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="site-header">
+        <div class="page-shell header-inner">
+          <div>
+            <p class="eyebrow">GPSisCom</p>
+            <h1>Gerador de README</h1>
+            <p class="header-subtitle">
+              Grupo de Pesquisa em Sistemas Computacionais
+            </p>
+          </div>
+          <div class="header-mark" aria-hidden="true">README</div>
+        </div>
+      </header>
+
+      <main class="page-shell page-content">
+        <div class="intro-row">
+          <p>
+            Preencha os dados do projeto e gere um README alinhado ao padrão dos
+            repositórios do GPSisCom.
+          </p>
+          <p class="local-note">
+            <span aria-hidden="true">●</span> Seu rascunho fica somente neste
+            navegador.
+          </p>
+        </div>
+
+        <div class="workspace-grid">
+          <form id="project-form" class="form-column" novalidate>
+            <section class="card form-section" aria-labelledby="identification-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">01</p>
+                  <h2 id="identification-title">Identificação do projeto</h2>
+                </div>
+                <p class="section-help">Os dados que aparecem no topo do README.</p>
+              </div>
+
+              <div class="field-grid">
+                <div class="field field-wide">
+                  <label class="field-label" for="project-name">Nome de exibição do projeto <span class="required-mark">*</span></label>
+                  <input class="text-input" id="project-name" type="text" autocomplete="off" placeholder="Scraper - AgroNews" data-field-path="projectName" aria-describedby="project-name-error" />
+                  <p class="field-error" id="project-name-error" data-error-for="projectName"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="repository-name">Nome do repositório <span class="required-mark">*</span></label>
+                  <input class="text-input" id="repository-name" type="text" autocomplete="off" placeholder="scraper-agronews" data-field-path="repositoryName" aria-describedby="repository-name-error" />
+                  <p class="field-hint">Use letras minúsculas, números e hífens.</p>
+                  <p class="field-error" id="repository-name-error" data-error-for="repositoryName"></p>
+                </div>
+
+                <div class="field">
+                  <label class="field-label" for="short-description">Descrição curta <span class="required-mark">*</span></label>
+                  <input class="text-input" id="short-description" type="text" placeholder="Uma ou duas frases sobre o projeto." data-field-path="shortDescription" aria-describedby="short-description-error" />
+                  <p class="field-error" id="short-description-error" data-error-for="shortDescription"></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="card form-section" aria-labelledby="about-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">02</p>
+                  <h2 id="about-title">Sobre o projeto</h2>
+                </div>
+                <p class="section-help">Contexto, problema, proposta e relevância.</p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="about">Sobre o projeto <span class="required-mark">*</span></label>
+                <textarea class="text-input textarea-input" id="about" rows="7" placeholder="Explique o contexto e a proposta do projeto." data-field-path="about" aria-describedby="about-error"></textarea>
+                <p class="field-hint">Markdown simples é permitido neste campo.</p>
+                <p class="field-error" id="about-error" data-error-for="about"></p>
+              </div>
+            </section>
+
+            <section class="card form-section" aria-labelledby="objectives-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">03</p>
+                  <h2 id="objectives-title">Objetivos</h2>
+                </div>
+                <p class="section-help">Liste o que o projeto pretende alcançar.</p>
+              </div>
+              <div id="objectives-list" class="dynamic-list" aria-describedby="objectives-error"></div>
+              <p class="field-error list-error" id="objectives-error" data-error-for="objectives"></p>
+              <button class="button button-secondary button-small" id="add-objective" type="button">+ Adicionar objetivo</button>
+            </section>
+
+            <section class="card form-section" aria-labelledby="functioning-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">04</p>
+                  <h2 id="functioning-title">Funcionamento</h2>
+                </div>
+                <p class="section-help">Seção opcional para explicar o fluxo.</p>
+              </div>
+              <label class="toggle-row" for="include-functioning">
+                <input id="include-functioning" type="checkbox" />
+                <span class="toggle-control" aria-hidden="true"></span>
+                <span>Incluir seção “Funcionamento”</span>
+              </label>
+              <div id="functioning-fields" class="optional-fields hidden">
+                <div class="field">
+                  <label class="field-label" for="functioning-intro">Explicação inicial</label>
+                  <textarea class="text-input textarea-input" id="functioning-intro" rows="5" placeholder="Descreva como o projeto funciona."></textarea>
+                </div>
+                <div class="field">
+                  <div class="list-heading">
+                    <label class="field-label" for="functioning-steps-list">Etapas do fluxo</label>
+                    <span class="field-hint">As setas serão geradas automaticamente.</span>
+                  </div>
+                  <div id="functioning-steps-list" class="dynamic-list"></div>
+                  <button class="button button-secondary button-small" id="add-functioning-step" type="button">+ Adicionar etapa</button>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="functioning-outro">Explicação posterior</label>
+                  <textarea class="text-input textarea-input" id="functioning-outro" rows="5" placeholder="Adicione detalhes depois do fluxo, se necessário."></textarea>
+                </div>
+              </div>
+            </section>
+
+            <section class="card form-section" aria-labelledby="technologies-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">05</p>
+                  <h2 id="technologies-title">Tecnologias</h2>
+                </div>
+                <p class="section-help">Uma tecnologia por linha.</p>
+              </div>
+              <div id="technologies-list" class="dynamic-list" aria-describedby="technologies-error"></div>
+              <p class="field-error list-error" id="technologies-error" data-error-for="technologies"></p>
+              <button class="button button-secondary button-small" id="add-technology" type="button">+ Adicionar tecnologia</button>
+            </section>
+
+            <section class="card form-section" aria-labelledby="installation-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">06</p>
+                  <h2 id="installation-title">Instalação</h2>
+                </div>
+                <p class="section-help">Clone e acesso ao diretório são automáticos.</p>
+              </div>
+              <div class="generated-command-note">
+                <span class="note-label">Gerado automaticamente</span>
+                <code>git clone .../NOME-DO-REPOSITORIO.git</code>
+                <code>cd NOME-DO-REPOSITORIO</code>
+              </div>
+              <div class="field">
+                <div class="list-heading">
+                  <label class="field-label" for="install-steps-list">Passos adicionais</label>
+                  <span class="field-hint">Descrição e comando.</span>
+                </div>
+                <div id="install-steps-list" class="dynamic-list"></div>
+                <button class="button button-secondary button-small" id="add-install-step" type="button">+ Adicionar passo</button>
+              </div>
+              <label class="toggle-row" for="uses-env">
+                <input id="uses-env" type="checkbox" />
+                <span class="toggle-control" aria-hidden="true"></span>
+                <span>O projeto utiliza arquivo .env</span>
+              </label>
+            </section>
+
+            <section class="card form-section" aria-labelledby="execution-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">07</p>
+                  <h2 id="execution-title">Execução</h2>
+                </div>
+                <p class="section-help">Pelo menos um comando é necessário.</p>
+              </div>
+              <div id="execution-steps-list" class="dynamic-list" aria-describedby="execution-steps-error"></div>
+              <p class="field-error list-error" id="execution-steps-error" data-error-for="executionSteps"></p>
+              <button class="button button-secondary button-small" id="add-execution-step" type="button">+ Adicionar passo</button>
+              <div class="field optional-execution-text">
+                <label class="field-label" for="execution-outro">Texto posterior</label>
+                <textarea class="text-input textarea-input" id="execution-outro" rows="3" placeholder="A aplicação estará disponível, por padrão, em:"></textarea>
+              </div>
+              <div class="field">
+                <label class="field-label" for="execution-url">Valor em bloco de texto</label>
+                <input class="text-input" id="execution-url" type="text" placeholder="http://127.0.0.1:8000/" />
+              </div>
+            </section>
+
+            <section class="card form-section" aria-labelledby="authors-title">
+              <div class="section-heading">
+                <div>
+                  <p class="section-kicker">08</p>
+                  <h2 id="authors-title">Autores</h2>
+                </div>
+                <p class="section-help">A seção será sempre a última do README.</p>
+              </div>
+              <div id="authors-list" class="dynamic-list" aria-describedby="authors-error"></div>
+              <p class="field-error list-error" id="authors-error" data-error-for="authors"></p>
+              <button class="button button-secondary button-small" id="add-author" type="button">+ Adicionar autor</button>
+            </section>
+          </form>
+
+          <aside class="preview-column" aria-label="Resultado do README">
+            <div class="card preview-card">
+              <div class="preview-header">
+                <div>
+                  <p class="section-kicker">Resultado</p>
+                  <h2>README gerado</h2>
+                </div>
+                <div class="preview-actions">
+                  <button class="button button-primary button-small" id="copy-readme" type="button">Copiar README</button>
+                  <button class="button button-secondary button-small" id="download-readme" type="button">Baixar README.md</button>
+                </div>
+              </div>
+              <div id="validation-summary" class="validation-summary hidden" role="alert" aria-live="polite"></div>
+              <div class="preview-tabs" role="tablist" aria-label="Formato do resultado">
+                <button class="preview-tab is-active" id="visual-tab" type="button" role="tab" aria-selected="true" aria-controls="visual-preview">Visualização</button>
+                <button class="preview-tab" id="markdown-tab" type="button" role="tab" aria-selected="false" aria-controls="markdown-preview">Markdown</button>
+              </div>
+              <div id="visual-preview" class="preview-pane markdown-preview" role="tabpanel" aria-labelledby="visual-tab"></div>
+              <textarea id="markdown-preview" class="preview-pane markdown-source hidden" readonly aria-labelledby="markdown-tab"></textarea>
+              <p id="action-status" class="action-status" aria-live="polite"></p>
+            </div>
+            <div class="preview-tools">
+              <button class="button button-secondary" id="load-example" type="button">Carregar exemplo</button>
+              <button class="button button-quiet" id="clear-form" type="button">Limpar formulário</button>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="page-shell">
+          <p>Gerador de README do GPSisCom · Dados processados localmente no navegador.</p>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
